@@ -9,9 +9,10 @@ public class AppRunner {
     private static final String SEPARATOR = System.getProperty("file.separator");
 
     public static void main(String[] args) {
-        String filePath = MAIN_DIR + SEPARATOR + "files" + SEPARATOR + "cat.jpg";
-        String fileCopyPath = MAIN_DIR + SEPARATOR + "files" + SEPARATOR + "cat_copy.jpg";
+        String filePath = MAIN_DIR + SEPARATOR + "files" + SEPARATOR + "text.txt";
+        String fileCopyPath = MAIN_DIR + SEPARATOR + "files" + SEPARATOR + "text_copy.txt";
 
-        FileManagerService.copyFile(filePath, fileCopyPath);
+        String text = FileManagerService.getTextFromFIle(filePath);
+        FileManagerService.writeTextToFile(fileCopyPath, text, true);
     }
 }

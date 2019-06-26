@@ -2,7 +2,6 @@ package org.itstep.service;
 
 import java.io.*;
 import java.nio.file.Files;
-import java.sql.SQLException;
 
 public class FileManagerService {
 
@@ -33,5 +32,32 @@ public class FileManagerService {
         writeByteArrayToFile(bytes, pathTo);
     }
 
+    public static String getTextFromFIle(String filePath){
+        String text = "";
 
+        try (
+                FileReader fileReader = new FileReader(filePath);
+                BufferedReader bufferedReader = new BufferedReader(fileReader)
+            )
+        {
+            String line;
+            while ((line = bufferedReader.readLine()) != null){
+                text += line + "\n";
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return text;
+    }
+
+    public static void writeTextToFile(String toPath, String text, boolean append){
+        try (FileWriter fileWriter = new FileWriter(toPath, append)){
+            fileWriter.write(text);
+            fileWriter.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
