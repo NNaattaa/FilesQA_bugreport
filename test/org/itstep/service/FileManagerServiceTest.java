@@ -68,6 +68,18 @@ class FileManagerServiceTest {
     }
 
     @Test
+    void testWriteSymbolsToFile() {
+        String text = "!@#$$%^&**(()";
+
+        FileManagerService.writeTextToFile(txtFileToPath, text, false);
+
+        String testText = FileManagerService.getTextFromFIle(txtFileToPath);
+
+        assertNotNull(testText);
+        assertEquals(testText,text+"\n");
+    }
+
+    @Test
     void testWriteTextToFileWithAppend() {
         String text = "some test text\n" +
                 "need to be writen to file.";
